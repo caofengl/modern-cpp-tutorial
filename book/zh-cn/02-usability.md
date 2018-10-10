@@ -252,7 +252,7 @@ int main() {
 ```Cpp
 public: 
     void foo(std::initializer_list<int> list) {
-            for (std::initializer_list<int>::iterator it = list.begin(); it != list.end(); ++it) vec.push_back(*it);
+        for (std::initializer_list<int>::iterator it = list.begin(); it != list.end(); ++it) vec.push_back(*it);
     }
 
 magicFoo.foo({6,7,8,9});
@@ -401,7 +401,7 @@ type z == type x
 ```cpp
 template<typename R, typename T, typename U>
 R add(T x, U y) {
-return x+y
+    return x+y
 }
 ```
 > 注意：typename 和 class 在模板参数列表中没有区别，在 typename 这个关键字出现之前，都是使用 class 来定义模板参数的。但在模板中定义有[嵌套依赖类型](http://en.cppreference.com/w/cpp/language/dependent_name#The_typename_disambiguator_for_dependent_names)的变量时，需要用 typename 消除歧义
@@ -703,8 +703,8 @@ void printf(T value, Args... args) {
     printf(args...);
 }
 int main() {
-printf(1, 2, "123", 1.1);
-return 0;
+    printf(1, 2, "123", 1.1);
+    return 0;
 }
 ```
 
@@ -826,8 +826,8 @@ int main() {
 ```cpp
 struct Base {
     virtual void foo();
-    };
-    struct SubClass: Base {
+};
+struct SubClass: Base {
     void foo();
 };
 ```
@@ -842,11 +842,11 @@ C++11 引入了 `override` 和 `final` 这两个关键字来防止上述情形�
 
 ```cpp
 struct Base {
-virtual void foo(int);
+    virtual void foo(int);
 };
 struct SubClass: Base {
-virtual void foo(int) override; // 合法
-virtual void foo(float) override; // 非法, 父类没有此虚函数
+    virtual void foo(int) override; // 合法
+    virtual void foo(float) override; // 非法, 父类没有此虚函数
 };
 ```
 
@@ -856,7 +856,7 @@ virtual void foo(float) override; // 非法, 父类没有此虚函数
 
 ```cpp
 struct Base {
-virtual void foo() final;
+    virtual void foo() final;
 };
 struct SubClass1 final: Base {
 }; // 合法
@@ -865,7 +865,7 @@ struct SubClass2 : SubClass1 {
 }; // 非法, SubClass1 已 final
 
 struct SubClass3: Base {
-void foo(); // 非法, foo 已 final
+    void foo(); // 非法, foo 已 final
 };
 ```
 
@@ -881,7 +881,7 @@ C++11 提供了上述需求的解决方案，允许显式的声明采用或拒�
 
 ```cpp
 class Magic {
-    public:
+public:
     Magic() = default; // 显式声明使用编译器生成的构造
     Magic& operator=(const Magic&) = delete; // 显式声明拒绝编译器生成构造
     Magic(int magic_number);
